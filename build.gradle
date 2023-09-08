@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.12'
+        springCloudVersion = '2021.0.5'
+    }
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version "${springBootVersion}"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    implementation platform("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'com.playtika.reactivefeign:feign-reactor-webclient:3.3.0'
+    implementation 'com.playtika.reactivefeign:feign-reactor-cloud:3.3.0'
+    implementation 'com.playtika.reactivefeign:feign-reactor-spring-configuration:3.3.0'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation("javax.servlet:javax.servlet-api:3.0.1")
+    testImplementation("com.github.tomakehurst:wiremock:3.0.1") {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
