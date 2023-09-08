@@ -23,7 +23,7 @@ class FeignTracingApplicationTests {
 	private ApplicationContext context;
 
 	@Test
-	void contextLoads() {
+	void feignTest() {
 		wireMockServer.start();
 		wireMockServer.stubFor(post(urlEqualTo("/icecream/bills/pay"))
 			.willReturn(aResponse().withBody("Hello World!")));
