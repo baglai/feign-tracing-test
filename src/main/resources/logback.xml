@@ -1,7 +1,7 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%mdc] [%marker] [%thread] %-5level %logger{36} %m%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%mdc] [%X{traceId:-},%X{spanId:-}] [%marker] [%thread] %-5level %logger{36} %m%n</pattern>
         </encoder>
     </appender>
 

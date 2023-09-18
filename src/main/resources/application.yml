@@ -3,3 +3,11 @@ logging:
     reactivefeign:
       client:
         log: trace
+
+
+management:
+  endpoints.web.exposure.include: '*' # health,info,prometheus
+
+  tracing:
+    enabled: true
+    sampling.probability: 1.0
