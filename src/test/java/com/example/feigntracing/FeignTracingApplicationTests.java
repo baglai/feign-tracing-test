@@ -35,4 +35,32 @@ class FeignTracingApplicationTests {
 
 		wireMockServer.stop();
 	}
+
+	@Test
+	void wcTest() {
+		wireMockServer.start();
+		wireMockServer.stubFor(post(urlEqualTo("/icecream/bills/pay"))
+			.willReturn(aResponse().withBody("Hello World!")));
+
+		WebTestClient client = WebTestClient.bindToApplicationContext(context).build();
+
+
+		client.get().uri("/wc").exchange().expectStatus().isOk().expectBody();
+
+		wireMockServer.stop();
+	}
+
+	@Test
+	void wcTestAsync() {
+		wireMockServer.start();
+		wireMockServer.stubFor(post(urlEqualTo("/icecream/bills/pay"))
+			.willReturn(aResponse().withBody("Hello World!")));
+
+		WebTestClient client = WebTestClient.bindToApplicationContext(context).build();
+
+
+		client.get().uri("/wcAsync").exchange().expectStatus().isOk().expectBody();
+
+		wireMockServer.stop();
+	}
 }

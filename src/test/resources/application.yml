@@ -3,3 +3,10 @@ logging:
     reactivefeign:
       client:
         log: trace
+    org:
+      springframework:
+        cloud:
+          sleuth:
+            instrument:
+              reactor:
+                log: trace
